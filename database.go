@@ -17,7 +17,7 @@ SELECT		r.repo_host, r.repo_owner, r.repo_name,
 			c.commit_gravatar, c.commit_timestamp, c.commit_message, c.commit_created, c.commit_updated
 FROM		repos r, commits c
 WHERE		r.repo_id = c.repo_id
-ORDER BY	c.created desc
+ORDER BY	c.commit_created desc
 LIMIT 20
 `
 	commitTeamStmt = `
@@ -28,7 +28,7 @@ SELECT      r.repo_owner, r.repo_owner, r.repo_name,
             c.commit_updated
 FROM        repos r, commits c
 WHERE       r.repo_id = c.repo_id
-ORDER BY    c.created DESC
+ORDER BY    c.commit_created DESC
 LIMIT 20
 `
 )
