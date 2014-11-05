@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"github.com/GeertJohan/go.rice"
-	. "github.com/drone/drone/pkg/model"
+	. "github.com/drone/drone/shared/model"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/russross/meddler"
 	"html/template"
