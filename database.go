@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	. "github.com/drone/drone/pkg/model"
+	. "github.com/drone/drone/shared/model"
 	"github.com/russross/meddler"
 )
 
