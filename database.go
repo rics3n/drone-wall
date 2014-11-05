@@ -11,26 +11,23 @@ import (
 
 const (
 	commitRecentTemplate = `
-SELECT		r.host, r.owner, r.name,
-			c.status, c.started, c.finished, c.duration, 
-			c.hash, c.branch, c.pull_request, c.author, 
-			c.gravatar, c.timestamp, c.message, c.created, c.updated
+SELECT		r.repo_host, r.repo_owner, r.repo_name,
+			c.commit_status, c.commit_started, c.commit_finished, c.commit_finished, 
+			c.commit_sha, c.commit_branch, c.commit_pr, c.commit_author, 
+			c.commit_gravatar, c.commit_timestamp, c.commit_message, c.commit_created, c.commit_updated
 FROM		repos r, commits c
 WHERE		r.id = c.repo_id
 ORDER BY	c.created desc
 LIMIT 20
 `
 	commitTeamStmt = `
-SELECT      r.host, r.owner, r.name,
-            c.status, c.started, c.finished, c.duration, 
-            c.hash, c.branch, c.pull_request, c.author, 
-            c.gravatar, c.timestamp, c.message, c.created, 
-            c.updated
+SELECT      r.repo_owner, r.repo_owner, r.repo_name,
+            c.commit_status, c.commit_started, c.commit_finished, c.commit_finished, 
+            c.commit_sha, c.commit_branch, c.commit_pr, c.commit_author, 
+            c.commit_gravatar, c.commit_timestamp, c.commit_message, c.commit_created, 
+            c.commit_updated
 FROM        repos r, commits c
 WHERE       r.id = c.repo_id
-AND         r.team_id IN (SELECT	id 
-						  FROM	    teams 
-						  WHERE	    slug = ?) 
 ORDER BY    c.created DESC
 LIMIT 20
 `
