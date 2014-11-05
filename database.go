@@ -11,18 +11,17 @@ import (
 
 const (
 	commitRecentTemplate = `
-SELECT		r.slug, r.host, r.owner, r.name,
+SELECT		r.host, r.owner, r.name,
 			c.status, c.started, c.finished, c.duration, 
 			c.hash, c.branch, c.pull_request, c.author, 
 			c.gravatar, c.timestamp, c.message, c.created, c.updated
 FROM		repos r, commits c
 WHERE		r.id = c.repo_id
-AND			r.slug IN (%s)
 ORDER BY	c.created desc
 LIMIT 20
 `
 	commitTeamStmt = `
-SELECT      r.slug, r.host, r.owner, r.name,
+SELECT      r.host, r.owner, r.name,
             c.status, c.started, c.finished, c.duration, 
             c.hash, c.branch, c.pull_request, c.author, 
             c.gravatar, c.timestamp, c.message, c.created, 
@@ -58,7 +57,8 @@ func commitRecentStmt() (string, []interface{}) {
 		}
 	}
 
-	return fmt.Sprintf(commitRecentTemplate, params.String()), repoList
+	//return fmt.Sprintf(commitRecentTemplate, params.String()), repoList
+	return commitRecentTemplate, repoList
 }
 
 func listRepoWallCommits() ([]*CommitRepo, error) {
