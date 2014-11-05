@@ -38,7 +38,7 @@ func wall(w http.ResponseWriter, r *http.Request) {
 
 // API endpoint for fetching the initial wall display data via AJAX
 func wallData(w http.ResponseWriter, r *http.Request) {
-	var commits []*RepoCommit
+	var commits []*CommitRepo
 	var err error
 
 	if *team != "" {

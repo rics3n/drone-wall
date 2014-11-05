@@ -4,10 +4,9 @@ import (
 	"bytes"
 	"database/sql"
 	"fmt"
-	"strings"
-
-	. "github.com/drone/drone/shared/model"
+	"strings" 
 	"github.com/russross/meddler"
+	. "github.com/drone/drone/shared/model"
 )
 
 const (
@@ -62,8 +61,8 @@ func commitRecentStmt() (string, []interface{}) {
 	return fmt.Sprintf(commitRecentTemplate, params.String()), repoList
 }
 
-func listRepoWallCommits() ([]*RepoCommit, error) {
-	var commits []*RepoCommit
+func listRepoWallCommits() ([]*CommitRepo, error) {
+	var commits []*CommitRepo
 
 	stmt, repoList := commitRecentStmt()
 
@@ -71,8 +70,8 @@ func listRepoWallCommits() ([]*RepoCommit, error) {
 	return commits, err
 }
 
-func listTeamWallCommits() ([]*RepoCommit, error) {
-	var commits []*RepoCommit
+func listTeamWallCommits() ([]*CommitRepo, error) {
+	var commits []*CommitRepo
 	err := meddler.QueryAll(db, &commits, commitTeamStmt, *team)
 	return commits, err
 }
